@@ -1,73 +1,80 @@
-# React + TypeScript + Vite
+[zh](Intro_Readme)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Cosmo's Personal Website
 
-Currently, two official plugins are available:
+This repository contains the source code of my personal website, which is deployed on GitHub Pages:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **GitHub Pages**: `https://cosmoumadd.github.io/`
 
-## React Compiler
+The site is still under construction and will be continuously updated with more content and design improvements.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React 19** (function components)
+- **TypeScript**
+- **Vite** (development and build tool)
+- **Tailwind CSS v4** (via `@tailwindcss/vite` and `@tailwindcss/postcss`)
+- **GitHub Actions + GitHub Pages** (CI/CD and deployment)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Development & Scripts
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Run the following commands in the project root:
+
+- **Install dependencies**
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **Start the dev server**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+By default the app will be available at `http://localhost:5173` (see the terminal output for the exact URL).
+
+- **Build for production**
+
+```bash
+npm run build
+```
+
+The build output will be generated in the `dist` folder.
+
+---
+
+## Project Structure
+
+- `src/App.tsx`: Main page component, currently showing a simple “site under construction” message.
+- `src/main.tsx`: React entry point that mounts `App` to the DOM.
+- `src/index.css` / `src/App.css`: CSS entry files using `@import "tailwindcss";`.
+- `vite.config.ts`: Vite configuration (including React and Tailwind plugins).
+- `tailwind.config.js` / `postcss.config.js`: Tailwind and PostCSS configuration.
+
+---
+
+## Deployment (GitHub Pages)
+
+This project uses **GitHub Actions** to automatically deploy to GitHub Pages:
+
+- Whenever changes are pushed to the `main` branch, the workflow will:
+  - Install dependencies
+  - Run `npm run build`
+  - Upload the `dist` folder and deploy it to GitHub Pages
+
+You can check the status of each deployment under the **Actions** tab of the repository.
+
+---
+
+## Future Plans
+
+- Add “About” and “Projects” pages
+- Add light/dark theme toggle
+- Publish more technical and learning notes
+
+Feel free to check back later to see new updates to the site!  
