@@ -1,21 +1,24 @@
 import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Header from './components/Header/Header.tsx'
+import Footer from './components/Footer.tsx'
+import Home from './pages/Home'
+import About from './pages/About'
+import Blog from './pages/Blog'
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-slate-950 text-slate-100">
-      <h1 className="mb-4 text-3xl font-bold underline">
-        This is Cosmo!
-      </h1>
-      <p className="mb-1 text-lg">
-        The Website is under construction...
-      </p>
-      <p className="mb-1 text-lg">
-        This personal website is built with React, TypeScript and Tailwind CSS.
-      </p>
-      <p className="text-lg">
-        I will update it continuously...
-      </p>
-    </div>
+    <>
+      <Header />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/blog" element={<Blog />} />
+        </Routes>
+      </main>
+      <Footer />
+    </>
   )
 }
 
