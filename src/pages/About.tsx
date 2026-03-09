@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function About() {
   return (
     <section id="about" className="min-h-screen py-20 container mx-auto px-4">

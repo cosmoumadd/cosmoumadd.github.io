@@ -1,4 +1,3 @@
-import React from 'react'
 import NavigateBar from './NavigateBar.tsx'
 
 function Header() {

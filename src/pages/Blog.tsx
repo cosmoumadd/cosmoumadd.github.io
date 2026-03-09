@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function Blog() {
   return (
     <section id="blog" className="min-h-screen py-20 container mx-auto px-4">

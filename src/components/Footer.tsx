@@ -1,5 +1,3 @@
-import React from 'react'
-
 function Footer() {
     return(
         <footer className="bg-slate-800 text-slate-100 py-4">
