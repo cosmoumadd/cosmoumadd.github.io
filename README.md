@@ -48,15 +48,46 @@ The build output will be generated in the `dist` folder.
 
 ---
 
-## Project Structure
-
-- `src/App.tsx`: Main page component, currently showing a simple “site under construction” message.
-- `src/main.tsx`: React entry point that mounts `App` to the DOM.
-- `src/index.css` / `src/App.css`: CSS entry files using `@import "tailwindcss";`.
-- `vite.config.ts`: Vite configuration (including React and Tailwind plugins).
-- `tailwind.config.js` / `postcss.config.js`: Tailwind and PostCSS configuration.
-
----
+## File Structure
+ 
+```
+src/
+  pages/
+    Home.tsx
+    About.tsx
+    Projects.tsx
+    Contact.tsx
+    NotFound.tsx              ← new
+    UnderMaintenance.tsx      ← new
+  components/
+    Header.tsx
+    Footer.tsx
+  App.tsx                     ← updated
+```
+ 
+## Important Notes
+ 
+1. **Route Order Matters**: The `path="*"` catch-all route MUST be the last route in your `<Routes>` block. Otherwise it'll swallow all routes that come after it.
+2. **UnderMaintenance is Reusable**: You can use it for any page that's not ready. Just pass different props.
+3. **Navigation Still Works**: Both pages include CTA buttons back to Home and other working sections.
+4. **Remove from Header**: If a page shows UnderMaintenance, consider removing it from the nav or marking it differently:
+   ```tsx
+   { to: '/blog', label: 'Blog', disabled: true }
+   ```
+ 
+## Quick Win: Remove Blog from Nav Temporarily
+ 
+In `Header.tsx`, comment out the blog link until it's ready:
+ 
+```tsx
+const navItems = [
+  { to: '/', label: 'Home' },
+  { to: '/about', label: 'About' },
+  { to: '/projects', label: 'Projects' },
+  // { to: '/blog', label: 'Blog' },  // Coming soon
+  { to: '/contact', label: 'Contact' },
+]
+```
 
 ## Deployment (GitHub Pages)
 
