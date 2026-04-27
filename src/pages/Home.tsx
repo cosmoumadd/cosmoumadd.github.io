@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const roles = ['Full Stack Developer', 'CS Student @ CityU HK', 'IoT Enthusiast', 'OOP & Java Practitioner']
 
@@ -68,12 +69,12 @@ export default function Home() {
         </p>
 
         <div className="flex flex-wrap gap-4 justify-center">
-          <a
-            href="/about"
+          <Link
+            to="/about"
             className="px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold rounded-lg transition-colors duration-200"
           >
             About Me
-          </a>
+          </Link>
           <a
             href="https://github.com/cosmoumadd"
             target="_blank"
@@ -82,12 +83,12 @@ export default function Home() {
           >
             GitHub
           </a>
-          <a
-            href="/contact"
+          <Link
+            to="/contact"
             className="px-6 py-3 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white font-semibold rounded-lg transition-colors duration-200"
           >
             Contact
-          </a>
+          </Link>
         </div>
 
         {/* Tech stack pills */}
