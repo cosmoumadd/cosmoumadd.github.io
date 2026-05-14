@@ -25,9 +25,7 @@ function App() {
               path="/blog" 
               element={<UnderMaintenance pageName="Blog" estimatedCompletion="May 2026" />} 
             />
-            
-            {/* Catch-all 404 route - must be last */}
-            <Route path="*" element={<NotFound />} />
+          
           </Routes>
         </main>
         <Footer />
