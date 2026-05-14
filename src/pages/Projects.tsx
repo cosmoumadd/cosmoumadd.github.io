@@ -23,6 +23,14 @@ const projects = [
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
     link: 'https://cosmoumadd.github.io/',
   },
+  {
+    title: 'Music toolkit',
+    tag: 'Personal Project',
+    tagColor: 'text-purple-400 border-purple-400/30 bg-purple-400/5',
+    desc: 'A simple music creation tool built with Svelte + TypeScript + Tailwind CSS. Allows users to explore music theory and practice tool such as metronome.',
+    stack: ['Svelte', 'TypeScript', 'Tailwind CSS'],
+    link: 'https://cosmoumadd.github.io/MusicToolkit/',
+  }
 ]
 
 export default function Projects() {
