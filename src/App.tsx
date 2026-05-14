@@ -5,7 +5,6 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Projects from './pages/Projects'
 import Contact from './pages/Contact'
-import NotFound from './pages/NotFound'
 import UnderMaintenance from './pages/UnderMaintenance'
 
 function App() {
