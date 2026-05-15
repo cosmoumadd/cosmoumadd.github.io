@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script type="text/javascript">
+      // Redirect to index.html and preserve the path
+      const pathSegments = window.location.pathname.split('/').filter(Boolean);
+      const redirectPath = pathSegments.length > 0 ? '/' + pathSegments.join('/') : '/';
+      
+      // Store the original path for the app to handle
+      sessionStorage.setItem('redirectPath', redirectPath);
+      
+      // Redirect to index.html
+      window.location.replace(window.location.origin + '/index.html');
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
