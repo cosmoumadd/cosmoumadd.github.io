@@ -1,3 +1,6 @@
+import PageIntro from '../components/PageIntro'
+import PageSection from '../components/PageSection'
+
 const links = [
   { label: 'Email', value: 'wongman2244@gmail.com', href: 'mailto:wongman2244@gmail.com' },
   { label: 'GitHub', value: 'github.com/cosmoumadd', href: 'https://github.com/cosmoumadd' },
@@ -7,16 +10,11 @@ const links = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="min-h-screen bg-slate-950 text-slate-100 py-24 px-6">
-      <div className="max-w-2xl mx-auto">
-        <div className="mb-16">
-          <span className="text-xs font-mono tracking-widest text-cyan-400">CONTACT</span>
-          <h2 className="text-4xl font-bold mt-2 mb-4">Get in touch</h2>
-          <p className="text-slate-400 text-lg leading-relaxed">
-            Currently looking for internship / junior developer opportunities. Open to full-stack,
-            backend, or IoT-adjacent roles. Drop a message anytime.
-          </p>
-        </div>
+    <PageSection id="contact" maxWidth="narrow">
+      <PageIntro eyebrow="CONTACT" title="Get in touch" descriptionClassName="">
+        Currently looking for internship / junior developer opportunities. Open to full-stack,
+        backend, or IoT-adjacent roles. Drop a message anytime.
+      </PageIntro>
 
         <div className="space-y-4">
           {links.map((l) => (
@@ -39,7 +37,6 @@ export default function Contact() {
         <p className="text-xs text-slate-600 mt-10 text-center font-mono">
           Hong Kong · UTC+8 · Response within 24h
         </p>
-      </div>
-    </section>
+    </PageSection>
   )
 }

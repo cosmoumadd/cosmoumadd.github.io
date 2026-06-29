@@ -1,3 +1,7 @@
+import PageIntro from '../components/PageIntro'
+import PageSection from '../components/PageSection'
+import Pill from '../components/Pill'
+
 const projects = [
   {
     title: 'VISTA',
@@ -35,15 +39,10 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="min-h-screen bg-slate-950 text-slate-100 py-24 px-6">
-      <div className="max-w-4xl mx-auto">
-        <div className="mb-16">
-          <span className="text-xs font-mono tracking-widest text-cyan-400">PROJECTS</span>
-          <h2 className="text-4xl font-bold mt-2 mb-4">Some Projects I've Built</h2>
-          <p className="text-slate-400 text-lg max-w-xl leading-relaxed">
-            A curated list of projects ranging from assistive tech to full-stack IoT platforms.
-          </p>
-        </div>
+    <PageSection id="projects">
+      <PageIntro eyebrow="PROJECTS" title="Some Projects I've Built">
+        A curated list of projects ranging from assistive tech to full-stack IoT platforms.
+      </PageIntro>
 
         <div className="grid gap-6 sm:grid-cols-2">
           {projects.map((p) => (
@@ -52,11 +51,9 @@ export default function Projects() {
               className="flex flex-col border border-slate-800 rounded-xl p-6 hover:border-slate-600 transition-colors duration-200 group"
             >
               <div className="flex items-center justify-between mb-3">
-                <span
-                  className={`text-xs font-mono px-2 py-0.5 border rounded-full ${p.tagColor}`}
-                >
+                <Pill className={`font-mono px-2 py-0.5 ${p.tagColor}`}>
                   {p.tag}
-                </span>
+                </Pill>
                 {p.link && (
                   <a
                     href={p.link}
@@ -75,12 +72,13 @@ export default function Projects() {
 
               <div className="flex flex-wrap gap-2 mt-auto">
                 {p.stack.map((s) => (
-                  <span
+                  <Pill
                     key={s}
-                    className="text-xs text-slate-500 border border-slate-800 rounded px-2 py-0.5 bg-slate-900"
+                    shape="rounded"
+                    className="text-slate-500 border-slate-800 px-2 py-0.5 bg-slate-900"
                   >
                     {s}
-                  </span>
+                  </Pill>
                 ))}
               </div>
             </div>
@@ -97,7 +95,6 @@ export default function Projects() {
             View all on GitHub ↗
           </a>
         </div>
-      </div>
-    </section>
+    </PageSection>
   )
 }

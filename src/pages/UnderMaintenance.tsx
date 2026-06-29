@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom'
+import ActionLink from '../components/ActionLink'
+import Pill from '../components/Pill'
+import StatusPage from '../components/StatusPage'
 
 interface UnderMaintenanceProps {
   pageName?: string
@@ -10,9 +12,8 @@ export default function UnderMaintenance({
   estimatedCompletion 
 }: UnderMaintenanceProps) {
   return (
-    <section className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center px-6">
-      <div className="max-w-2xl mx-auto text-center">
-        {/* Icon */}
+    <StatusPage
+      visual={(
         <div className="mb-8 inline-flex items-center justify-center w-20 h-20 rounded-full border-2 border-slate-800 bg-slate-900">
           <svg 
             className="w-10 h-10 text-slate-600" 
@@ -34,43 +35,30 @@ export default function UnderMaintenance({
             />
           </svg>
         </div>
-
-        {/* Status badge */}
-        <span className="inline-block mb-4 px-3 py-1 text-xs font-mono tracking-widest text-amber-400 border border-amber-400/30 rounded-full bg-amber-400/5">
+      )}
+      badge={(
+        <Pill className="inline-block mb-4 px-3 py-1 font-mono tracking-widest text-amber-400 border-amber-400/30 bg-amber-400/5">
           UNDER CONSTRUCTION
-        </span>
-
-        <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-          {pageName} is under maintenance
-        </h1>
-
-        <p className="text-slate-400 text-lg mb-2 max-w-xl mx-auto leading-relaxed">
-          Currently building out this section. Check back soon for updates.
-        </p>
-
-        {estimatedCompletion && (
+        </Pill>
+      )}
+      title={`${pageName} is under maintenance`}
+      description="Currently building out this section. Check back soon for updates."
+      detail={estimatedCompletion && (
           <p className="text-sm text-slate-600 font-mono mb-8">
             // Estimated completion: {estimatedCompletion}
           </p>
-        )}
-
-        {/* Action buttons */}
-        <div className="flex flex-wrap gap-4 justify-center mt-10">
-          <Link
-            to="/"
-            className="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold rounded-lg transition-colors duration-200"
-          >
+      )}
+      actions={(
+        <>
+          <ActionLink to="/" variant="neutral">
             ← Back to Home
-          </Link>
-          <Link
-            to="/projects"
-            className="px-6 py-3 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white font-semibold rounded-lg transition-colors duration-200"
-          >
+          </ActionLink>
+          <ActionLink to="/projects">
             View Projects
-          </Link>
-        </div>
-
-        {/* Progress indicator */}
+          </ActionLink>
+        </>
+      )}
+      footer={(
         <div className="mt-16">
           <div className="flex items-center justify-center gap-2 text-xs text-slate-600 font-mono">
             <span className="w-2 h-2 rounded-full bg-slate-800 animate-pulse" style={{ animationDelay: '0ms' }} />
@@ -78,7 +66,7 @@ export default function UnderMaintenance({
             <span className="w-2 h-2 rounded-full bg-slate-800 animate-pulse" style={{ animationDelay: '300ms' }} />
           </div>
         </div>
-      </div>
-    </section>
+      )}
+    />
   )
 }

@@ -1,7 +1,31 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import ActionLink from '../components/ActionLink'
+import Pill from '../components/Pill'
 
 const roles = ['Full Stack Developer', 'CS Student @ CityU HK', 'IoT Enthusiast', 'OOP & Java Practitioner']
+
+const futurePlans = [
+  {
+    title: 'AWS certifications',
+    detail: 'Earn AWS Certified Solutions Architect - Associate and AWS Certified Machine Learning Engineer - Associate.',
+  },
+  {
+    title: 'Oracle Java certification',
+    detail: 'Strengthen and validate my professional Java development skills.',
+  },
+  {
+    title: 'Alibaba Cloud certifications',
+    detail: 'Pursue associate-level certifications in AI, cloud computing, security, and related areas.',
+  },
+  {
+    title: 'Cisco CCNA certification',
+    detail: 'Build a stronger foundation in networking through the Cisco Certified Network Associate certification.',
+  },
+  {
+    title: 'Python development certification',
+    detail: 'Validate my Python development knowledge with a recognised professional certification.',
+  },
+]
 
 export default function Home() {
   const [roleIndex, setRoleIndex] = useState(0)
@@ -27,10 +51,11 @@ export default function Home() {
   }, [displayed, deleting, roleIndex])
 
   return (
-    <section
-      id="home"
-      className="min-h-screen flex items-center justify-center bg-slate-950 text-slate-100 relative overflow-hidden"
-    >
+    <>
+      <section
+        id="home"
+        className="min-h-screen flex items-center justify-center bg-slate-950 text-slate-100 relative overflow-hidden"
+      >
       {/* Subtle grid background */}
       <div
         className="absolute inset-0 opacity-10"
@@ -47,9 +72,9 @@ export default function Home() {
 
       <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
         {/* Badge */}
-        <span className="inline-block mb-5 px-3 py-1 text-xs font-mono tracking-widest text-cyan-400 border border-cyan-400/30 rounded-full bg-cyan-400/5">
+        <Pill className="inline-block mb-5 px-3 py-1 font-mono tracking-widest text-cyan-400 border-cyan-400/30 bg-cyan-400/5">
           AVAILABLE FOR OPPORTUNITIES
-        </span>
+        </Pill>
 
         <h1 className="text-5xl sm:text-6xl font-bold mb-4 tracking-tight">
           Hi, I'm{' '}
@@ -69,37 +94,26 @@ export default function Home() {
         </p>
 
         <div className="flex flex-wrap gap-4 justify-center">
-          <Link
-            to="/about"
-            className="px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold rounded-lg transition-colors duration-200"
-          >
+          <ActionLink to="/about" variant="primary">
             About Me
-          </Link>
-          <a
-            href="https://github.com/cosmoumadd"
-            target="_blank"
-            rel="noreferrer"
-            className="px-6 py-3 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white font-semibold rounded-lg transition-colors duration-200"
-          >
+          </ActionLink>
+          <ActionLink href="https://github.com/cosmoumadd">
             GitHub
-          </a>
-          <Link
-            to="/contact"
-            className="px-6 py-3 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white font-semibold rounded-lg transition-colors duration-200"
-          >
+          </ActionLink>
+          <ActionLink to="/contact">
             Contact
-          </Link>
+          </ActionLink>
         </div>
 
         {/* Tech stack pills */}
         <div className="mt-14 flex flex-wrap gap-2 justify-center">
           {['Java', 'Python', 'TypeScript', 'React', 'Node.js', 'C#', 'SQL', 'Spring Boot'].map((tech) => (
-            <span
+            <Pill
               key={tech}
-              className="px-3 py-1 text-xs text-slate-400 border border-slate-800 rounded-full bg-slate-900 hover:border-slate-600 hover:text-slate-200 transition-colors"
+              className="px-3 py-1 text-slate-400 border-slate-800 bg-slate-900 hover:border-slate-600 hover:text-slate-200 transition-colors"
             >
               {tech}
-            </span>
+            </Pill>
           ))}
         </div>
       </div>
@@ -109,6 +123,34 @@ export default function Home() {
         <span>scroll</span>
         <span className="animate-bounce text-slate-500">↓</span>
       </div>
-    </section>
+      </section>
+
+      <section id="future-plans" className="border-t border-slate-800 bg-slate-900/40 px-6 py-20 text-slate-100 sm:py-24">
+        <div className="max-w-4xl mx-auto">
+          <span className="text-xs font-mono tracking-widest text-cyan-400">FUTURE PLANS</span>
+          <h2 className="text-3xl sm:text-4xl font-bold mt-2 mb-4">What I'm working toward</h2>
+          <p className="text-slate-400 max-w-2xl leading-relaxed mb-10">
+            Certifications I plan to pursue as I deepen my skills across software development, cloud, AI,
+            security, and networking.
+          </p>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {futurePlans.map((plan, index) => (
+              <div key={plan.title} className="border border-slate-800 rounded-xl bg-slate-950/60 p-5">
+                <div className="flex items-start gap-4">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cyan-400/10 text-xs font-mono text-cyan-300">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <h3 className="font-semibold text-slate-100">{plan.title}</h3>
+                    <p className="text-sm text-slate-400 mt-2 leading-relaxed">{plan.detail}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   )
 }

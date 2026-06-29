@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 function NavigateBar() {
   const { pathname } = useLocation()
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   const navItems = [
     { to: '/', label: 'Home' },
@@ -16,12 +18,16 @@ function NavigateBar() {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-14">
           {/* Brand */}
-          <Link to="/" className="text-lg font-bold text-white tracking-tight">
+          <Link
+            to="/"
+            onClick={() => setMobileOpen(false)}
+            className="text-lg font-bold text-white tracking-tight whitespace-nowrap"
+          >
             cosmoumadd<span className="text-cyan-400">.</span>github.io
           </Link>
 
-          {/* Nav links */}
-          <ul className="flex gap-1">
+          {/* Desktop nav links */}
+          <ul className="hidden md:flex gap-1">
             {navItems.map(({ to, label }) => {
               const active = pathname === to
               return (
@@ -40,7 +46,51 @@ function NavigateBar() {
               )
             })}
           </ul>
+
+          <button
+            type="button"
+            className="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-md text-slate-300 hover:bg-slate-800 hover:text-white transition-colors"
+            aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-controls="mobile-navigation"
+            aria-expanded={mobileOpen}
+            onClick={() => setMobileOpen((open) => !open)}
+          >
+            {mobileOpen ? (
+              <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
+                <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            )}
+          </button>
         </div>
+
+        {/* Mobile nav links */}
+        <ul
+          id="mobile-navigation"
+          className={`${mobileOpen ? 'flex' : 'hidden'} md:hidden flex-col gap-1 border-t border-slate-800 py-3`}
+        >
+          {navItems.map(({ to, label }) => {
+            const active = pathname === to
+            return (
+              <li key={to}>
+                <Link
+                  to={to}
+                  onClick={() => setMobileOpen(false)}
+                  className={`block px-3 py-2 text-sm rounded-md transition-colors ${
+                    active
+                      ? 'text-white bg-slate-800'
+                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                  }`}
+                >
+                  {label}
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
       </div>
     </nav>
   )
