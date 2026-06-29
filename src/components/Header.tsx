@@ -68,29 +68,44 @@ function NavigateBar() {
         </div>
 
         {/* Mobile nav links */}
-        <ul
+        <div
           id="mobile-navigation"
-          className={`${mobileOpen ? 'flex' : 'hidden'} md:hidden flex-col gap-1 border-t border-slate-800 py-3`}
+          aria-hidden={!mobileOpen}
+          className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out md:hidden ${
+            mobileOpen ? 'grid-rows-[1fr] opacity-100' : 'pointer-events-none grid-rows-[0fr] opacity-0'
+          }`}
         >
-          {navItems.map(({ to, label }) => {
-            const active = pathname === to
-            return (
-              <li key={to}>
-                <Link
-                  to={to}
-                  onClick={() => setMobileOpen(false)}
-                  className={`block px-3 py-2 text-sm rounded-md transition-colors ${
-                    active
-                      ? 'text-white bg-slate-800'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
-                  }`}
-                >
-                  {label}
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
+          <div className="min-h-0 overflow-hidden">
+            <ul className="flex flex-col gap-1 border-t border-slate-800 py-3">
+              {navItems.map(({ to, label }, index) => {
+                const active = pathname === to
+                return (
+                  <li
+                    key={to}
+                    className={mobileOpen ? 'mobile-nav-item' : ''}
+                    style={{ animationDelay: `${index * 45}ms` }}
+                  >
+                    <Link
+                      to={to}
+                      tabIndex={mobileOpen ? undefined : -1}
+                      onClick={() => setMobileOpen(false)}
+                      className={`block rounded-md px-3 py-2 text-sm transition-all duration-200 hover:translate-x-1 ${
+                        active
+                          ? 'bg-slate-800 text-white'
+                          : 'text-slate-400 hover:bg-slate-800/60 hover:text-slate-200'
+                      }`}
+                    >
+                      <span className="mr-3 font-mono text-xs text-cyan-400/60">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      {label}
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        </div>
       </div>
     </nav>
   )

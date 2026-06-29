@@ -10,13 +10,13 @@ type ActionLinkProps = {
 )
 
 const variantClasses = {
-  primary: 'bg-cyan-500 hover:bg-cyan-400 text-slate-950',
+  primary: 'bg-cyan-500 hover:bg-cyan-400 text-slate-950 shadow-lg shadow-cyan-950/30',
   secondary: 'border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white',
   neutral: 'bg-slate-800 hover:bg-slate-700 text-slate-100',
 }
 
 export default function ActionLink({ children, variant = 'secondary', ...destination }: ActionLinkProps) {
-  const className = `px-6 py-3 font-semibold rounded-lg transition-colors duration-200 ${variantClasses[variant]}`
+  const className = `px-6 py-3 font-semibold rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${variantClasses[variant]}`
 
   if (typeof destination.to === 'string') {
     return <Link to={destination.to} className={className}>{children}</Link>

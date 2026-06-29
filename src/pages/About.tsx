@@ -112,7 +112,7 @@ export default function About() {
   return (
     <PageSection id="about" compactOnMobile>
         {/* Profile */}
-        <div className="mb-16 grid gap-8 sm:grid-cols-[auto_1fr] sm:items-center">
+        <div className="scroll-reveal mb-16 grid gap-8 sm:grid-cols-[auto_1fr] sm:items-center">
           <img
             src="/cosmo-profile.png"
             alt="Portrait of Cosmo Wong"
@@ -144,14 +144,14 @@ export default function About() {
                 rel="noreferrer"
                 className="text-cyan-400 hover:text-cyan-300 transition-colors"
               >
-                cosmoumadd.github.io
+                Personal Page(this)
               </a>
             </div>
           </div>
         </div>
 
         {/* Skills */}
-        <div className="mb-16">
+        <div className="scroll-reveal mb-16">
           <h3 className="text-xl font-semibold mb-6 text-slate-200">Technical & General Skills</h3>
           <div className="space-y-5">
             {skillGroups.map(({ label, skills, colors }) => (
@@ -170,7 +170,7 @@ export default function About() {
         </div>
 
         {/* Experience */}
-        <div className="mb-16">
+        <div className="scroll-reveal mb-16">
           <h3 className="text-xl font-semibold mb-6 text-slate-200">Work Experience</h3>
           {experience.map((item) => (
             <div key={item.role} className="border border-slate-800 rounded-xl p-6 hover:border-slate-600 transition-colors">
@@ -187,7 +187,7 @@ export default function About() {
         </div>
 
         {/* Education */}
-        <div className="mb-16">
+        <div className="scroll-reveal mb-16">
           <h3 className="text-xl font-semibold mb-6 text-slate-200">Education</h3>
           <div className="relative border-l border-slate-800 pl-6 space-y-8">
             {education.map((item) => (
@@ -208,7 +208,7 @@ export default function About() {
         </div>
 
         {/* Competitions */}
-        <div className="mb-16">
+        <div className="scroll-reveal mb-16">
           <h3 className="text-xl font-semibold mb-6 text-slate-200">Competitions & Activities</h3>
           <div className="space-y-5">
             {activities.map((item) => (
@@ -225,7 +225,7 @@ export default function About() {
         </div>
 
         {/* Scholarships */}
-        <div className="mb-16">
+        <div className="scroll-reveal mb-16">
           <h3 className="text-xl font-semibold mb-6 text-slate-200">Scholarships</h3>
           <div className="space-y-5">
             {scholarships.map((item) => (

@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
+import { useEffect, useLayoutEffect } from 'react'
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -10,6 +10,7 @@ import UnderMaintenance from './pages/UnderMaintenance'
 
 function AppContent() {
   const navigate = useNavigate()
+  const { pathname } = useLocation()
 
   useEffect(() => {
     // Handle 404.html redirect for GitHub Pages
@@ -19,6 +20,34 @@ function AppContent() {
       navigate(redirectPath)
     }
   }, [navigate])
+
+  useLayoutEffect(() => {
+    const elements = document.querySelectorAll<HTMLElement>('.scroll-reveal')
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    document.documentElement.classList.add('reveal-ready')
+
+    if (reducedMotion || !('IntersectionObserver' in window)) {
+      elements.forEach((element) => element.classList.add('is-visible'))
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px' },
+    )
+
+    elements.forEach((element) => observer.observe(element))
+
+    return () => observer.disconnect()
+  }, [pathname])
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-950">

@@ -17,13 +17,14 @@ export default function Contact() {
       </PageIntro>
 
         <div className="space-y-4">
-          {links.map((l) => (
+          {links.map((l, index) => (
             <a
               key={l.label}
               href={l.href}
               target={l.href.startsWith('mailto') ? undefined : '_blank'}
               rel="noreferrer"
-              className="flex items-center justify-between p-5 border border-slate-800 rounded-xl hover:border-slate-600 hover:bg-slate-900/50 transition-all group"
+              className="scroll-reveal group flex items-center justify-between rounded-xl border border-slate-800 p-5 transition-all hover:border-slate-600 hover:bg-slate-900/50"
+              style={{ '--reveal-delay': `${index * 80}ms` } as React.CSSProperties}
             >
               <div>
                 <p className="text-xs font-mono text-slate-500 mb-0.5">{l.label}</p>
